@@ -4,40 +4,44 @@ from abc import ABC, abstractmethod
 
 
 def generate_account_number():
-    available_numbers = list(range(10000,99999))
+    available_numbers = list(range(10000, 99999))
     account_number = random.choice(available_numbers)
     available_numbers.remove(account_number)
     if len(available_numbers) == 0:
         return ""
     return str(account_number)
 
-def display_largest_account(list):
+
+def display_largest_account(account_list):
     balance_list = []
-    for account in list:
+    for account in account_list:
         balance_list.append(account.balance)
     balance_list.sort()
     largest_balance = balance_list[-1]
     largest_accounts = ""
-    for account in list:
+    for account in account_list:
         if account.balance == largest_balance:
             largest_accounts += account.display_info() + "\n"
 
     largest_accounts += "The account(s) is(are) the oldest account(s) from the list."
     return largest_accounts
 
-def display_oldest_account(list):
+
+def display_oldest_account(account_list):
     date_list = []
-    for account in list:
+    for account in account_list:
         date_list.append(account.open_date)
     date_list.sort(key=lambda date: datetime.strptime(date, "%Y-%m-%d"))
     oldest_date = date_list[0]
     oldest_accounts = ""
-    for account in list:
+    for account in account_list:
         if account.open_date == oldest_date:
             oldest_accounts += account.display_info() + "\n"
 
     oldest_accounts += "The account(s) is(are) the oldest account(s) from the list."
     return oldest_accounts
+
+
 class Account(ABC):
     account_number = ""
     name = ""
@@ -60,12 +64,12 @@ class Account(ABC):
         else:
             return f"${amount} Invalid amount.\nAvailable balance: ${self.balance}"
 
-
     def deposit(self, amount):
         if amount <= 0:
             return "Invalid amount"
         self.balance += amount
         return f"${amount} deposited.\nBalance: ${self.balance}"
+
 
 class SavingsAccount(Account):
     interest = 0.0
@@ -87,7 +91,6 @@ class SavingsAccount(Account):
                 f"Balance: ${self.balance}")
 
 
-
 class CheckingAccount(Account):
     list_checking_accounts = []
 
@@ -104,28 +107,26 @@ class CheckingAccount(Account):
                 f"Open date: {self.open_date}\n"
                 f"Balance: ${self.balance}")
 
+
 def main():
     s1 = SavingsAccount("Emma Smith", "2022-04-03", 550, 0.1)
     print(s1.display_info())
 
     c1 = CheckingAccount("Jackson Johnson", "2021-07-27", 300)
-    #print(c1.display_info())
+    # print(c1.display_info())
 
-    #print(s1.withdraw(1000))
+    # print(s1.withdraw(1000))
 
     s1.withdraw(50)
 
     c1.deposit(40)
 
-    #print(c1.deposit(-100))
+    # print(c1.deposit(-100))
 
-    c2 = CheckingAccount("Charlie Lee", "2021-07-27", 500)
-    #print(display_largest_account(Account.list_accounts))
+    # c2 = CheckingAccount("Charlie Lee", "2021-07-27", 500)
+    # print(display_largest_account(Account.list_accounts))
 
-    #print(display_oldest_account(Account.list_accounts))
-
-
-
+    # print(display_oldest_account(Account.list_accounts))
 
 
 if __name__ == '__main__':

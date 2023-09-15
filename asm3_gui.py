@@ -1,17 +1,12 @@
 import tkinter as tk
-from assignment3 import SavingsAccount, CheckingAccount, display_oldest_account
-from assignment3 import Account, display_largest_account, generate_account_number
-
-
+from assignment3 import Account, SavingsAccount, CheckingAccount
+from assignment3 import display_oldest_account, display_largest_account
 
 app = tk.Tk()
 app.title("Bank Account Manager")
 
 
-
-
-
-# Function to create a new savings account
+# function to create a new savings account
 def create_savings_account():
     name = name_entry.get()
     open_date = open_date_entry.get()
@@ -22,7 +17,7 @@ def create_savings_account():
     display_text.insert(tk.END, savings_account.display_info() + "\n")
 
 
-# Function to create a new checking account
+# function to create a new checking account
 def create_checking_account():
     name = name_entry.get()
     open_date = open_date_entry.get()
@@ -32,7 +27,7 @@ def create_checking_account():
     display_text.insert(tk.END, checking_account.display_info() + "\n")
 
 
-# Function to withdraw money from an account
+# function to withdraw money from an account
 def withdraw_money():
     amount = float(withdraw_entry.get())
     selected_account = Account.list_accounts[account_listbox.curselection()[0]]
@@ -40,7 +35,7 @@ def withdraw_money():
     display_text.insert(tk.END, result + "\n")
 
 
-# Function to deposit money into an account
+# function to deposit money into an account
 def deposit_money():
     amount = float(deposit_entry.get())
     selected_account = Account.list_accounts[account_listbox.curselection()[0]]
@@ -48,19 +43,19 @@ def deposit_money():
     display_text.insert(tk.END, result + "\n")
 
 
-# Function to display information about the largest account
+# function to display information about the largest account
 def display_largest():
     result = display_largest_account(Account.list_accounts)
     display_text.insert(tk.END, result + "\n")
 
 
-# Function to display information about the oldest account
+# function to display information about the oldest account
 def display_oldest():
     result = display_oldest_account(Account.list_accounts)
     display_text.insert(tk.END, result + "\n")
 
 
-# Create and arrange GUI components
+# creating gui components
 name_label = tk.Label(app, text="Name:")
 name_label.pack()
 
