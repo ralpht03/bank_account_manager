@@ -2,9 +2,8 @@ from datetime import datetime
 import random
 from abc import ABC, abstractmethod
 
-
+available_numbers = list(range(10000, 99999))
 def generate_account_number():
-    available_numbers = list(range(10000, 99999))
     account_number = random.choice(available_numbers)
     available_numbers.remove(account_number)
     if len(available_numbers) == 0:
