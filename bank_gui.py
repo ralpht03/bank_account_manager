@@ -1,6 +1,6 @@
 import tkinter as tk
-from assignment3 import Account, SavingsAccount, CheckingAccount
-from assignment3 import display_oldest_account, display_largest_account
+from bank import Account, SavingsAccount, CheckingAccount
+from bank import display_oldest_account, display_largest_account
 
 app = tk.Tk()
 app.title("Bank Account Manager")
